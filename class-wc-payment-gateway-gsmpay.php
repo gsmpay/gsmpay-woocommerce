@@ -349,7 +349,6 @@ function gsmpay_init_payment_gateway()
                     'unit_price' => $this->convert_money($currency, $unitPrice),
                     'unit_discount' => $this->convert_money($currency, $unitDiscount),
                     'unit_tax_amount' => $this->convert_money($currency, $unitTax),
-                    'total_amount' => $this->convert_money($currency, $product['total'] + $product['total_tax']),
                     'is_product' => true,
                 ];
             }
@@ -364,7 +363,6 @@ function gsmpay_init_payment_gateway()
                     'unit_price' => $shippingCost,
                     'unit_discount' => 0,
                     'unit_tax_amount' => $shippingTax,
-                    'total_amount' => $shippingCost + $shippingTax,
                 ];
             }
 
@@ -418,8 +416,8 @@ function gsmpay_init_payment_gateway()
         {
             $currency = strtoupper($currency);
 
-            if ($currency === 'IRR') {
-                $amount /= 10;
+            if ($currency === 'IRT') {
+                $amount *= 10;
             } elseif ($currency === 'IRHR') {
                 $amount *= 100;
             } elseif ($currency === 'IRHT') {
