@@ -1,0 +1,56 @@
+/* Basic styles for the payment form */
+.gsmpay-form {
+  background: #f9f9f9 !important;
+  border: 1px solid #ddd !important;
+  padding: 20px !important;
+  border-radius: 8px !important;
+  max-width: 400px !important;
+  margin: 0 auto !important;
+}
+
+.gsmpay-form .form-row {
+    margin-bottom: 15px !important;
+    padding: 0 !important;
+}
+
+.gsmpay-form .form-row-first {
+  float: right !important;
+  width: 48% !important;
+  margin-left: 4% !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.gsmpay-form .form-row-last {
+  float: left !important;
+  width: 48% !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.gsmpay-form label {
+  display: block !important;
+  margin-bottom: 5px !important;
+  font-weight: bold !important;
+  float: none !important;
+  top: unset !important;
+  background-color: unset !important;  
+}
+
+.gsmpay-form input[type="text"] {
+  width: 100% !important;
+  padding: 8px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  box-sizing: border-box !important;
+  height: unset !important;  
+}
+
+.gsmpay-form .required {
+  color: #e2401c !important;
+}
+
+.gsmpay-form .clear {
+  clear: both !important;
+}

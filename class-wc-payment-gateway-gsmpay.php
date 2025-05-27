@@ -85,6 +85,7 @@ function gsmpay_init_payment_gateway()
 
             add_action('woocommerce_admin_order_data_after_billing_address', [$this, 'checkout_field_display_admin_order_meta'], 10, 1);
             add_action('woocommerce_checkout_update_order_meta', [$this, 'checkout_update_order_meta']);
+            add_action('wp_enqueue_scripts', [$this, 'enqueue_gsm_form_styles']);
         }
 
         public function init_form_fields()
@@ -129,7 +130,7 @@ function gsmpay_init_payment_gateway()
             }
 
             echo sprintf(
-                '<fieldset id="wc-%s-cc-form" class="wc-credit-card-form wc-payment-form" style="background:transparent;">
+                '<fieldset id="wc-%s-cc-form" class="wc-credit-card-form wc-payment-form gsmpay-form" style="background:transparent;">
                     <div class="form-row form-row-first">
                         <label>موبایل <span class="required">*</span></label>
                         <input name="payer_mobile" value="%s" type="text" autocomplete="off" placeholder="شماره موبایل" maxlength="11">
@@ -443,6 +444,21 @@ function gsmpay_init_payment_gateway()
         {
             wp_redirect($url);
             exit;
+        }
+
+        /**
+         * Enqueue custom CSS for GSM Pay form
+         */
+        public function enqueue_gsm_form_styles()
+        {
+            if (is_checkout()) {
+                wp_enqueue_style(
+                    'gsm-form-style',
+                    plugin_dir_url(GSMPAY_PLUGIN_FILE) . 'assets/css/form-style.css',
+                    [],
+                    '1.0.2'
+                );
+            }
         }
     }
 }
