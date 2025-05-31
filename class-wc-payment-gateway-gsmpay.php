@@ -359,11 +359,13 @@ function gsmpay_init_payment_gateway()
                 $shippingTax = $this->convert_money($currency, $order->get_shipping_tax());
 
                 $data['items'][] = [
+                    'reference' => 'SEND-COST',
                     'name' => 'هزینه ارسال',
                     'quantity' => 1,
                     'unit_price' => $shippingCost,
                     'unit_discount' => 0,
                     'unit_tax_amount' => $shippingTax,
+                    'is_product' => false,
                 ];
             }
 
@@ -388,7 +390,7 @@ function gsmpay_init_payment_gateway()
             $nationalCode =  WC()->customer->get_meta('_wc_other/gsmpay/national_code');
 
             if (empty($nationalCode) && !empty($_POST['payer_national_code'])) {
-                $nationalCode = $_POST['payer_mobile'];
+                $nationalCode = $_POST['payer_national_code'];
             }
 
             if (empty($nationalCode)) {
@@ -456,7 +458,7 @@ function gsmpay_init_payment_gateway()
                     'gsm-form-style',
                     plugin_dir_url(GSMPAY_PLUGIN_FILE) . 'assets/css/form-style.css',
                     [],
-                    '1.0.2'
+                    '1.0.4'
                 );
             }
         }
