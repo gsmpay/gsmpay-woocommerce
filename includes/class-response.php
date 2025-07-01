@@ -81,6 +81,17 @@ class GSMPay_Http_Response
      */
     public function getErrorMessage()
     {
-        return !$this->isSuccessful() ? $this->toArray()['message'] : null;
+        if (!$this->isSuccessful()) {
+            $errors = $this->toArray()['errors'];
+            foreach ($errors as $field => $fieldErrors) {
+                // Each field can have multiple error messages
+                foreach ($fieldErrors as $error) {
+                    $messages[] = $error;
+                }
+            }
+            // Combine all messages
+            return !empty($messages) ? implode(' - ', $messages) : __('خطا در اعتبار سنجی درگاه پرداخت', WC_GSMPAY_TRANSLATE_DOMAIN);
+        }
+        return null;
     }
 }
