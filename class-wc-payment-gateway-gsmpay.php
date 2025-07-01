@@ -233,6 +233,7 @@ function gsmpay_init_payment_gateway()
 
                 if (!$response->isSuccessful()) {
                     wc_add_notice($this->get_gsmpay_errors($response), 'error');
+                    $this->redirect(wc_get_checkout_url());
                     return;
                 }
 
@@ -248,6 +249,7 @@ function gsmpay_init_payment_gateway()
                 $this->redirect($data['redirect_url']);
             } catch (\Exception $e) {
                 wc_add_notice(__('در هنگام اتصال به درگاه جی‌اس‌ام پی خطایی رخ داده است.', WC_GSMPAY_TRANSLATE_DOMAIN), 'error');
+                $this->redirect(wc_get_checkout_url());
             }
         }
 
