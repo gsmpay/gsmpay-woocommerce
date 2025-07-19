@@ -460,7 +460,7 @@ function gsmpay_init_payment_gateway()
                     'gsm-form-style',
                     plugin_dir_url(GSMPAY_PLUGIN_FILE) . 'assets/css/form-style.css',
                     [],
-                    '1.0.4'
+                    '1.0.5'
                 );
             }
         }
